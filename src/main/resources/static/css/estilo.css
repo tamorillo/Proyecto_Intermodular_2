@@ -1,0 +1,66 @@
+body {
+    margin: 0;/* Elimina el margen que el navegador. */
+    padding: 0; /* Elimina el espacio interior de la página. */
+    background-color: #F4F8F5; /* El color de fondo general de la aplicación. */
+    color: #333333;/* Color principal del texto. */
+    font-family: Arial, sans-serif;/*Tipo de letra usada. */
+}
+
+.contenedor {
+    width: 90%;/*  Ocupará el 90% del ancho disponible. */
+    max-width: 500px; /* Evita que el formulario sea demasiado ancho en pantallas grandes. */
+    margin: 60px auto; /* Añade 60px de espacio arriba y abajo y centra el contenedor horizontalmente. */
+}
+
+.tarjeta {
+    background-color: #FFFFFF;/* Fondo blanco de la tarjeta. */
+    padding: 30px;/* Espacio entre el contenido y los bordes de la tarjeta. */
+    border-radius: 12px; /* Redondea las esquinas de la tarjeta. */
+    
+}
+
+h1 {
+    color: #5B9B78;
+    text-align: center; /* Centra el título */
+}
+
+label {
+    display: block;/* Cada etiqueta ocupe su propia línea. */
+    margin-bottom: 6px;/* Añade espacio debajo de la etiqueta. */
+    color: #666666;/* Color gris para las etiquetas. */
+}
+
+/* Campos de texto */
+input {
+    width: 100%; /* Ocupa todo el ancho disponible. */
+    box-sizing: border-box;/* Hace que el ancho incluya también el padding y el borde. */
+    padding: 10px;/* Añade espacio interior para que el texto no quede pegado a los bordes. */
+    margin-bottom: 18px;/* Añade espacio debajo de cada campo. */
+    border: 1px solid #cccccc; /* Añade un borde gris claro alrededor del campo. */
+    border-radius: 6px;/* Redondea las esquinas del campo. */
+    font-size: 15px; /* Tamaño del texto*/
+}
+
+button {
+    width: 100%;/* El botón ocupa todo el ancho disponible. */
+    padding: 11px;
+    border: none; /* Elimina el borde predeterminado del botón. */
+    border-radius: 6px;/* Redondea las esquinas del botón. */
+    background-color: #5B9B78;
+    color: #FFFFFF;
+    font-size: 16px;
+    cursor: pointer;/* Cambia el cursor al icono de mano cuando pasa sobre el botón. */
+}
+/* Efecto al pasar el ratón */
+button:hover {
+    opacity: 0.9;/* Más transparente al pasar el ratón por encima del botón. */
+}
+/* Mensaje del registro correcto */
+.mensaje {
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 6px;
+    background-color: #E3F2E9;
+    color: #5B9B78;
+    text-align: center;
+}
