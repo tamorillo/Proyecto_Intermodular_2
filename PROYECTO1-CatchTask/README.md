@@ -34,6 +34,12 @@ En el **Sprint 1** se ha trabajado en la gestión de usuarios y el acceso a la a
 * 🛡️ **Protección de contraseñas:** almacenamiento de contraseñas mediante hash BCrypt.
 * 🔒 **Control de acceso:** la página de inicio requiere una sesión iniciada.
 
+
+## 📋 Gestión del proyecto
+El desarrollo de CatchTask se organiza mediante un tablero de Trello, donde se planifican las tareas, se controla su estado y se realiza el seguimiento de los sprints.
+
+🔗 [Acceder al tablero de Trello](https://trello.com/invite/b/6ac6a69fde04ede9b08480c4/ATTI4c76a0b95e121d30f44660756e0d0a01EDB73792/catchtask-proyecto-intermodular-ii)
+
 ## 🛠️ Tecnologías utilizadas
 
 <p align="center">
