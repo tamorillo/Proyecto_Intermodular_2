@@ -1,30 +1,38 @@
+
 package com.proyecto.gestortareas.entity;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
-// Indica que esta clase representa una tabla de la base de datos
+// La clase se guardará en la BD
 @Entity
 public class Asignatura {
 
-    // Identificador único de cada asignatura
-    @Id
+    @Id // Cada asignatura tendrá un id único
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // Datos de la asignatura
     private String nombre;
     private String descripcion;
     private String curso;
     private String profesor;
 
-    // Constructor vacío que necesita JPA
+    // permite que un usuario tenga muchas asignaturas, pero cada asignatura está asociada a un usuario
+    @ManyToOne(fetch = FetchType.LAZY) // Los datos del usuario se cargan solo cuando se necesita
+    
+    // Creará la relación con el usuario mediante el campo usuario_id
+    @JoinColumn(name = "usuario_id", nullable = false) // nullabe = false, indica que una asignatura no puede guardarse sin un usuario asociado
+    private Usuario usuario;
+
+    
+    // Getters y Setters
     public Asignatura() {
     }
-
-    // Getters y Setters para consultar y modificar los datos
 
     public Long getId() {
         return id;
@@ -65,4 +73,13 @@ public class Asignatura {
     public void setProfesor(String profesor) {
         this.profesor = profesor;
     }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
 }
+
