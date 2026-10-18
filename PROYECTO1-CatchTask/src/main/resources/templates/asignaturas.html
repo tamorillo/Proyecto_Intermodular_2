@@ -11,6 +11,9 @@
 <body>
 
     <h1>Mis asignaturas</h1>
+	
+	<!-- Añadido enlace de cerrar sesión a la pantalla de mis asignaturas -->
+	<a th:href="@{/logout}">Cerrar sesión</a>
 
     <p>Organiza y consulta tus asignaturas.</p>
 
@@ -62,5 +65,13 @@
 
     <a th:href="@{/inicio}">Volver al inicio</a>
 
+	<!-- Comprueba si el navegador recupera una página guardada y la recarga para verificar la sesión del usuario -->
+		<script>
+			window.addEventListener("pageshow", function(event) {
+				if (event.persisted) {
+					window.location.reload();
+				}
+			});
+		</script>
 </body>
 </html>
