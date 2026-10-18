@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asignaturas | CatchTask</title>
+    <link rel="stylesheet" th:href="@{/css/estilo.css}">
+</head>
+
+<body>
+
+    <h1 th:if="${accion == 'nueva'}">Nueva asignatura</h1>
+    <h1 th:if="${accion == 'editar'}">Editar asignatura</h1>
+
+    <p>Introduce los datos de la asignatura.</p>
+
+    <!-- Formulario para añadir una asignatura -->
+    <form th:if="${accion == 'nueva'}"
+          th:action="@{/asignaturas/guardar}"
+          th:object="${asignatura}"
+          method="post">
+
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre"
+               th:field="*{nombre}" required>
+
+        <label for="descripcion">Descripción:</label>
+        <textarea id="descripcion"
+                  th:field="*{descripcion}"></textarea>
+
+        <label for="curso">Curso:</label>
+        <input type="text" id="curso"
+               th:field="*{curso}" required>
+
+        <label for="profesor">Profesor:</label>
+        <input type="text" id="profesor"
+               th:field="*{profesor}" required>
+
+        <button type="submit">Guardar asignatura</button>
+
+    </form>
+
+    <!-- Formulario para editar una asignatura -->
+    <form th:if="${accion == 'editar'}"
+          th:action="@{/asignaturas/actualizar/{id}(id=${asignatura.id})}"
+          th:object="${asignatura}"
+          method="post">
+
+        <label for="nombre-editar">Nombre:</label>
+        <input type="text" id="nombre-editar"
+               th:field="*{nombre}" required>
+
+        <label for="descripcion-editar">Descripción:</label>
+        <textarea id="descripcion-editar"
+                  th:field="*{descripcion}"></textarea>
+
+        <label for="curso-editar">Curso:</label>
+        <input type="text" id="curso-editar"
+               th:field="*{curso}" required>
+
+        <label for="profesor-editar">Profesor:</label>
+        <input type="text" id="profesor-editar"
+               th:field="*{profesor}" required>
+
+        <button type="submit">Guardar cambios</button>
+
+    </form>
+
+    <p>
+        <a th:href="@{/asignaturas}">Volver a mis asignaturas</a>
+    </p>
+
+</body>
+</html>
