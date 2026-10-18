@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis asignaturas | CatchTask</title>
+    <link rel="stylesheet" th:href="@{/css/estilo.css}">
+</head>
+
+<body>
+
+    <h1>Mis asignaturas</h1>
+
+    <p>Organiza y consulta tus asignaturas.</p>
+
+    <p th:if="${mensaje}" th:text="${mensaje}"></p>
+    <p th:if="${error}" th:text="${error}"></p>
+
+    <a th:href="@{/asignaturas/nueva}">Añadir asignatura</a>
+
+    <p th:if="${#lists.isEmpty(asignaturas)}">
+        Aún no tienes asignaturas registradas.
+    </p>
+
+    <div th:each="asignatura : ${asignaturas}">
+
+        <hr>
+
+        <h2 th:text="${asignatura.nombre}"></h2>
+
+        <p>
+            Descripción:
+            <span th:text="${asignatura.descripcion}"></span>
+        </p>
+
+        <p>
+            Curso:
+            <span th:text="${asignatura.curso}"></span>
+        </p>
+
+        <p>
+            Profesor:
+            <span th:text="${asignatura.profesor}"></span>
+        </p>
+
+        <a th:href="@{/asignaturas/editar/{id}(id=${asignatura.id})}">
+            Editar
+        </a>
+
+        <form th:action="@{/asignaturas/eliminar/{id}(id=${asignatura.id})}"
+              method="post"
+              onsubmit="return confirm('¿Seguro que quieres eliminar esta asignatura?');">
+
+            <button type="submit">Eliminar</button>
+
+        </form>
+
+    </div>
+
+    <hr>
+
+    <a th:href="@{/inicio}">Volver al inicio</a>
+
+</body>
+</html>
