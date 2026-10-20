@@ -71,7 +71,7 @@
         <a th:href="@{/asignaturas}">Volver a mis asignaturas</a>
     </p>
 
-		<!-- Comprueba si el navegador recupera una página guardada y la recarga para verificar la sesión del usuario -->
+	<!-- Comprueba si el navegador recupera una página guardada y la recarga para verificar la sesión del usuario -->
 	<script>
 		window.addEventListener("pageshow", function(event) {
 			if (event.persisted) {
@@ -79,5 +79,15 @@
 			}
 		});
 	</script>
+	
+	<!-- Hace desaparecer los mensajes después de 3 segundos -->
+	<script>
+		// Espera 3 segundos antes de ejecutar el código
+	    setTimeout(() => {
+			// Busca y elimina todos los elementos con la clase "mensaje"
+	        document.querySelectorAll(".mensaje").forEach(m => m.remove());
+	    }, 3000);// 3 segundos
+	</script>
+
 </body>
 </html>

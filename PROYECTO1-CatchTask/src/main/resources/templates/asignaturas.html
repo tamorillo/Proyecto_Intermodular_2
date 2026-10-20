@@ -80,5 +80,15 @@
 				}
 			});
 		</script>
+
+		<!-- Hace desaparecer los mensajes después de 3 segundos -->
+		<script>
+			// Espera 3 segundos antes de ejecutar el código
+			setTimeout(() => {
+				  // Busca y elimina todos los elementos con la clase "mensaje"
+			      document.querySelectorAll(".mensaje").forEach(m => m.remove());
+			   }, 3000);// 3 segundos
+			</script>
+
 </body>
 </html>
