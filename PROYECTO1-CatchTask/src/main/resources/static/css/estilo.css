@@ -22,6 +22,8 @@ body {
 h1 {
     color: #5B9B78;
     text-align: center; /* Centra el título */
+	font-size: 40px;
+	margin-bottom: 25px;
 }
 
 label {
@@ -64,3 +66,131 @@ button:hover {
     color: #5B9B78;
     text-align: center;
 }
+
+/*--------|Último añadido|---------------- */
+/* Contenedor principal de la página */
+.contenedor-asignaturas {
+	max-width: 1000px;
+	margin: 10px auto;
+	padding: 20px;
+}
+
+/* Botón para añadir asignaturas */
+.boton-anadir {
+	display: inline-block;
+	margin: 10px 0 25px;/* Añade 10 píxeles de margen arriba, 0 a los lados y 25 abajo */
+	padding: 10px 15px; /* Añade 10 píxeles de espacio interior arriba y abajo, y 15 a los lados */
+	background-color: #52796f; /* Fondo en verde */
+	color: white;
+	text-decoration: none;/* Elimina el subrayado del enlace */
+	border-radius: 6px;
+}
+
+/* Organiza las tarjetas en varias columnas */
+.lista-asignaturas {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 25px;
+	margin-top: 20px;
+}
+
+/* Diseño de cada tarjeta */
+.tarjeta-asignatura {
+	width: 300px;
+	flex: 0 0 300px;/* Evita que la tarjeta crezca o se encoja y fija su tamaño en 300 píxeles */
+	padding: 25px; /* Añade 25 píxeles de espacio interior entre el contenido y los bordes */
+	border: 1px solid #ddd; /* Añade un borde fino de color gris claro */
+	border-radius: 10px;
+	background-color: white;
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column; /* Coloca los elementos de la tarjeta en una columna, uno debajo de otro */
+}
+
+/* Título de la tarjeta */
+.tarjeta-asignatura h2 {
+	height: 48px;
+	margin-top: 0; /* Elimina el margen superior del título */
+	color: #000000; /* Color del texto negro */
+	margin-bottom: 15px; 	/* Añade 15 píxeles de espacio debajo del título */
+	display: flex;
+	align-items: flex-start; /* Coloca el texto en la parte superior del espacio reservado */
+}
+
+/* Espacio entre los botones */
+.acciones-asignatura {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	margin-top: auto;
+	padding-top: 10px;
+}
+
+/* Estilos del formulario que contiene el botón Eliminar */
+.acciones-asignatura form {
+	margin: 0; /* Elimina los márgenes predeterminados del formulario */
+}
+
+/* Botón de editar */
+.boton-editar {
+	padding: 8px 12px;/* Añade 8 píxeles de espacio interior arriba y abajo, y 12 a los lados */
+	background-color: #e8efff; /* Fondo azul claro */
+	color: #1d4ed8; /* Color del texto en azul */
+	text-decoration: none; /* Elimina el subrayado del enlace */
+	border-radius: 5px; /* Redondea las esquinas del botón */
+}
+
+/* Mensajes */
+.mensaje {
+	color: #15803d;/* Color del texto en verde oscuro */
+}
+
+/* Estilos de los mensajes de error */
+.error {
+    color: #dc2626;/* Color del texto en rojo para identificar los errores */
+}
+
+/* Enlace para volver al inicio */
+.volver-inicio {
+    display: inline-block;
+    margin-top: 25px;
+}
+
+/* Coloca el enlace de cerrar sesión a la derecha */
+.cerrar-sesion {
+	display: block;
+	text-align: right; /* Alinea el texto a la derecha */
+	margin-bottom: 15px; /* Añade 15 píxeles de espacio debajo del enlace */
+}
+
+/* Estilos del texto descriptivo de la página */
+.descripcion-pagina {
+    font-size: 25px;
+    font-weight: bold; /* Muestra el texto en negrita */
+    color: #465A52; /* Color del texto en verde grisáceo oscuro */
+    margin-bottom: 25px; /* Añade 25 píxeles de espacio debajo del texto */
+}
+
+
+.tarjeta-asignatura p {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+/* Aplica estos estilos al enlace Editar y al botón Eliminar */
+.acciones-asignatura .boton-editar,
+.acciones-asignatura button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;/* Centra el texto horizontalmente */
+    box-sizing: border-box;
+    width: 100px; /* Anchura de 100 píxeles */
+    height: 38px; /* Altura de 38 píxeles */
+    padding: 0; /* Elimina el espacio interior adicional */
+    font-size: 14px;
+    border: none; /* Elimina el borde predeterminado */
+    border-radius: 6px;/* Redondea las esquinas */
+    text-decoration: none; /* Quita el subrayado del enlace Editar */
+    cursor: pointer; /* Muestra la mano al pasar el ratón por encima */
+}
+
+	

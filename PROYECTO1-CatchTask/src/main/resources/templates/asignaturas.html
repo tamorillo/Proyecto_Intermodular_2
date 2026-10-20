@@ -9,47 +9,51 @@
 </head>
 
 <body>
-
-    <h1>Mis asignaturas</h1>
 	
-	<!-- Añadido enlace de cerrar sesión a la pantalla de mis asignaturas -->
-	<a th:href="@{/logout}">Cerrar sesión</a>
+	<div class="contenedor-asignaturas">
 
-    <p>Organiza y consulta tus asignaturas.</p>
+    		<h1>Mis asignaturas</h1>
+	
+		<!-- Añadido enlace de cerrar sesión a la pantalla de mis asignaturas -->
+		<a class="cerrar-sesion" th:href="@{/logout}">Cerrar sesión</a>
 
-    <p th:if="${mensaje}" th:text="${mensaje}"></p>
-    <p th:if="${error}" th:text="${error}"></p>
+    		<p class="descripcion-pagina">Organiza y consulta tus asignaturas.</p>
 
-    <a th:href="@{/asignaturas/nueva}">Añadir asignatura</a>
+    		<p class="mensaje" th:if="${mensaje}" th:text="${mensaje}"></p>
+    		<p class="error" th:if="${error}" th:text="${error}"></p>
 
-    <p th:if="${#lists.isEmpty(asignaturas)}">
-        Aún no tienes asignaturas registradas.
-    </p>
+    		<a class="boton-anadir" th:href="@{/asignaturas/nueva}">+ Añadir asignatura</a>
 
-    <div th:each="asignatura : ${asignaturas}">
-
-        <hr>
-
-        <h2 th:text="${asignatura.nombre}"></h2>
+    		<p th:if="${#lists.isEmpty(asignaturas)}">
+        		Aún no tienes asignaturas registradas.
+    		</p>
+			
+			<div class="lista-asignaturas">
+			
+				<div class="tarjeta-asignatura" th:each="asignatura : ${asignaturas}">
+        
+			<h2 th:text="${asignatura.nombre}"></h2>
 
         <p>
-            Descripción:
+            <strong>Descripción:</strong>
             <span th:text="${asignatura.descripcion}"></span>
         </p>
 
         <p>
-            Curso:
+            <strong>Curso:</strong>
             <span th:text="${asignatura.curso}"></span>
         </p>
 
         <p>
-            Profesor:
+            <strong>Profesor:</strong>
             <span th:text="${asignatura.profesor}"></span>
         </p>
+		
+		<div class="acciones-asignatura">
 
-        <a th:href="@{/asignaturas/editar/{id}(id=${asignatura.id})}">
-            Editar
-        </a>
+        		<a class="boton-editar" th:href="@{/asignaturas/editar/{id}(id=${asignatura.id})}">
+            		Editar
+        		</a>
 
         <form th:action="@{/asignaturas/eliminar/{id}(id=${asignatura.id})}"
               method="post"
@@ -58,12 +62,15 @@
             <button type="submit">Eliminar</button>
 
         </form>
+	</div> <!-- Cierra las acciones -->
 
-    </div>
+  </div> <!-- Cierra la tarjeta -->
 
-    <hr>
+ </div> <!-- Cierra la lista de asignaturas -->
 
-    <a th:href="@{/inicio}">Volver al inicio</a>
+ <a class="volver-inicio" th:href="@{/inicio}">Volver al inicio</a>
+	
+</div> <!-- Cierra el contenedor principal -->
 
 	<!-- Comprueba si el navegador recupera una página guardada y la recarga para verificar la sesión del usuario -->
 		<script>
