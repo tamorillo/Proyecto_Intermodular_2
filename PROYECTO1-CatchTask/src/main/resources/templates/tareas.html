@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Mis tareas - CatchTask</title>
+
+    <!-- Carga los estilos de la aplicación. -->
+    <link rel="stylesheet" th:href="@{/css/estilo.css}">
+</head>
+
+<body>
+
+    <!-- Contenedor principal para centrar el contenido. -->
+    <div class="contenedor">
+
+        <!-- Tarjeta principal que contiene el listado de tareas. -->
+        <div class="tarjeta-listado-tareas">
+
+            <h1>Mis tareas</h1>
+
+            <!-- Muestra el mensaje de confirmación si existe. -->
+            <div class="mensaje" th:if="${mensaje}" th:text="${mensaje}"></div>
+
+            <!-- Muestra los errores si existe alguno. -->
+            <p class="mensaje"
+               th:if="${error != null}"
+               th:text="${error}">
+            </p>
+
+            <div class="enlaces-tareas">
+                <a class="boton-anadir-tarea" th:href="@{/tareas/nueva}">+ Añadir tarea</a>
+                <a class="boton-volver-inicio" th:href="@{/inicio}">Volver al inicio</a>
+            </div>
+
+            <!-- Mensaje que aparece si todavía no hay tareas. -->
+            <p th:if="${#lists.isEmpty(tareas)}">
+                Todavía no tienes tareas creadas.
+            </p>
+
+            <!-- Rejilla que organiza las tareas en varias columnas. -->
+            <div class="rejilla-tareas">
+
+                <div class="tarjeta-tarea" th:each="tarea : ${tareas}">
+
+                    <div class="contenido-tarea">
+
+                        <!-- Nombre de la tarea -->
+                        <h3 th:text="${tarea.nombre}"></h3>
+
+                        <!-- Descripción de la tarea -->
+                        <p class="descripcion-tarea" th:text="${tarea.descripcion}"></p>
+
+                        <!-- Fecha de entrega -->
+                        <p class="datos-tarea">
+                            <strong>Fecha de entrega:</strong>
+                            <span th:text="${tarea.fechaEntrega}"></span>
+                        </p>
+
+                        <!-- Asignatura -->
+                        <p class="datos-tarea">
+                            <strong>Asignatura:</strong>
+                            <span th:text="${tarea.asignatura.nombre}"></span>
+                        </p>
+
+                        <!-- Estado -->
+                        <p class="datos-tarea">
+                            <strong>Estado:</strong>
+                            <span th:if="${tarea.terminada}">Terminada</span>
+                            <span th:unless="${tarea.terminada}">Pendiente</span>
+                        </p>
+
+                    </div>
+
+                    <!-- Botones para realizar acciones sobre la tarea. -->
+                    <div class="acciones-tarea">
+
+						<!-- Formulario para cambiar el estado de la tarea. -->
+                        <form th:action="@{/tareas/estado/{id}(id=${tarea.id})}" method="post">
+                            <button type="submit"
+                                    class="boton-estado"
+                                    th:classappend="${tarea.terminada} ? ' boton-pendiente' : ' boton-terminada'"
+                                    th:text="${tarea.terminada ? 'Marcar como pendiente' : 'Marcar como terminada'}">
+                                Marcar como terminada
+                            </button>
+                        </form>
+
+						<!-- Enlace para editar los datos de la tarea. -->
+                        <a class="boton-accion enlace-editar"
+                           th:href="@{/tareas/editar/{id}(id=${tarea.id})}">
+                            Editar
+                        </a>
+
+						<!-- Formulario para eliminar la tarea, solicitando confirmación. -->
+                        <form th:action="@{/tareas/eliminar/{id}(id=${tarea.id})}"
+                              method="post"
+                              onsubmit="return confirm('¿Seguro que quieres eliminar esta tarea?');">
+                            <button class="boton-accion boton-eliminar" type="submit">
+                                Eliminar
+                            </button>
+                        </form>
+
+                    </div> <!-- Cierra el contenedor de los botones de acción. -->
+                </div><!-- Cierra la tarjeta individual de la tarea. -->
+            </div><!-- Cierra la rejilla que contiene todas las tareas. -->
+
+        </div><!-- Cierra la tarjeta principal del listado. -->
+    </div><!-- Cierra el contenedor principal de la página. -->
+
+    <script>
+		
+        // Espera 3 segundos antes de ejecutar el código
+        setTimeout(() => {
+            // Busca y elimina todos los elementos con la clase "mensaje"
+            document.querySelectorAll(".mensaje").forEach(m => m.remove());
+        }, 3000); // 3 segundos
+    </script>
+
+</body>
+</html>
