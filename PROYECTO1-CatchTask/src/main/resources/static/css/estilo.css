@@ -63,11 +63,11 @@ button:hover {
     padding: 10px;
     border-radius: 6px;
     background-color: #E3F2E9;
-    color: #5B9B78;
+    color: #15803d;
     text-align: center;
 }
 
-/*--------|Último añadido|---------------- */
+/* ESTILOS DE ASIGNATURAS */
 /* Contenedor principal de la página */
 .contenedor-asignaturas {
 	max-width: 1000px;
@@ -140,11 +140,6 @@ button:hover {
 	border-radius: 5px; /* Redondea las esquinas del botón */
 }
 
-/* Mensajes */
-.mensaje {
-	color: #15803d;/* Color del texto en verde oscuro */
-}
-
 /* Estilos de los mensajes de error */
 .error {
     color: #dc2626;/* Color del texto en rojo para identificar los errores */
@@ -193,4 +188,197 @@ button:hover {
     cursor: pointer; /* Muestra la mano al pasar el ratón por encima */
 }
 
+/* Listado de tareas */
+.tarjeta-listado-tareas {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Distribución de las tareas */
+.rejilla-tareas {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+    align-items: start;
+}
+
+/* Tarjetas individuales */
+.tarjeta-tarea {
+    padding: 20px;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-sizing: border-box;
+    min-height: 340px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.descripcion-tarea {
+    height: 60px;
+    overflow: hidden;
+	margin-bottom: 0;
+	line-height: 20px;
+}
+
+.tarjeta-tarea h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+/* Coloca los tres botones en una fila */
+.acciones-tarea {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+	margin-top: 5px;
 	
+}
+
+.datos-tarea {
+    margin-top: 25px;
+}
+
+/* Los tres botones ocupan el mismo espacio */
+.acciones-tarea form,
+.acciones-tarea a {
+    flex: 1;
+    min-width: 0;
+    margin: 0;
+}
+
+.acciones-tarea button,
+.acciones-tarea a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 40px;
+    padding: 8px 4px;
+    box-sizing: border-box;
+    font-size: 12px;
+    text-align: center;
+}
+
+/* Botón para cambiar el estado */
+.acciones-tarea button.boton-estado {
+    background-color: #e3f2e9;
+    color: #356b50;
+    border: 1px solid #b8dcc7;
+}
+
+/* Botón de editar */
+.acciones-tarea a {
+    background-color: #e8efff;
+    color: #3563c7;
+	border-radius: 6px;
+    border: 1px solid #c8d7ff;
+    text-decoration: none;
+}
+
+/* Botón de eliminar */
+.acciones-tarea button.boton-eliminar {
+    background-color: #fff0f0;
+    color: #b42332;
+    border: 1px solid #f5c6cb;
+}
+
+/* Efecto al pasar el ratón */
+.acciones-tarea button:hover,
+.acciones-tarea a:hover {
+    filter: brightness(0.95);
+}
+
+/* Coloca Guardar y Cancelar en la misma fila */
+.acciones-formulario {
+    display: flex;
+    gap: 10px;
+}
+
+/* Ambos ocupan el mismo espacio */
+.acciones-formulario button,
+.acciones-formulario a {
+    flex: 1;
+    width: 50%;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+/* Estilo del enlace Cancelar */
+.acciones-formulario a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 11px;
+    background-color: #e8efff;
+    color: #3563c7;
+    border-radius: 6px;
+    text-decoration: none;
+}
+
+/* Botón Añadir tarea */
+.boton-anadir-tarea {
+    display: inline-block;
+    padding: 10px 16px;
+    background-color: #5B9B78;
+    color: white;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.boton-anadir-tarea:hover {
+    background-color: #4a8565;
+}
+/* Alinea los enlaces en extremos opuestos */
+.enlaces-tareas {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+/* Botón Volver al inicio */
+.boton-volver-inicio {
+    padding: 10px 16px;
+    background-color: #e8efff;
+    color: #3563c7;
+    border-radius: 6px;
+    text-decoration: none;
+}
+
+.boton-volver-inicio:hover {
+    background-color: #d5e2ff;
+}
+.contenedor:has(.tarjeta-listado-tareas) {
+    max-width: 1200px;
+}
+
+.enlaces-principales {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 25px;
+}
+
+/* Evita que las palabras largas desborden la tarjeta */
+.tarjeta-tarea p {
+    overflow-wrap: anywhere;
+}
+
+.etiqueta-fecha {
+    display: block;
+    margin-top: 20px;
+}
+textarea {
+    width: 100%;
+    height: 100px;
+    resize: none;
+    box-sizing: border-box;
+}
+select {
+    margin-bottom: 30px;
+}
+
+
