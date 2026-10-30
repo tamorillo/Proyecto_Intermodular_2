@@ -9,11 +9,14 @@
 </head>
 
 <body>
+	
+	<div class="contenedor">
+		<div class="tarjeta">
 
-    <h1 th:if="${accion == 'nueva'}">Nueva asignatura</h1>
-    <h1 th:if="${accion == 'editar'}">Editar asignatura</h1>
+    		<h1 th:if="${accion == 'nueva'}">Nueva asignatura</h1>
+    		<h1 th:if="${accion == 'editar'}">Editar asignatura</h1>
 
-    <p>Introduce los datos de la asignatura.</p>
+    		<p>Introduce los datos de la asignatura.</p>
 
     <!-- Formulario para añadir una asignatura -->
     <form th:if="${accion == 'nueva'}"
