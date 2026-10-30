@@ -381,4 +381,29 @@ select {
     margin-bottom: 30px;
 }
 
+/* Estilos de la pantalla formulario-asignatura */
+
+
+/* Limita el ancho del formulario de asignaturas. */
+.contenedor {
+    max-width: 500px;
+    margin: 60px auto;
+}
+
+/* Da espacio interior al formulario. */
+.tarjeta {
+    background-color: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-sizing: border-box;
+}
+
+/* Evita que los campos sobresalgan de la tarjeta. */
+input,
+textarea {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+
 
