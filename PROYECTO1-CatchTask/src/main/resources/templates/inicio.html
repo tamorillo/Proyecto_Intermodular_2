@@ -16,14 +16,20 @@
 
             <h1>Bienvenido a CatchTask</h1>
 			
-			<a th:href="@{/asignaturas}">Mis asignaturas</a>
-
-            <p>Has iniciado sesión correctamente.</p>
-
-            <!-- Enlace para cerrar la sesión del usuario -->
-            <a href="/logout">Cerrar sesión</a>
-
-        </div>
+			<!-- Agrupa los enlaces principales para poder separarlos. -->
+			<div class="enlaces-principales">	
+				<!-- Enlace para consultar las asignaturas del usuario. -->
+				<a th:href="@{/asignaturas}">Mis asignaturas</a>	
+				<!-- Enlace para consultar y gestionar las tareas del usuario. -->
+				<a th:href="@{/tareas}">Mis tareas</a>
+			</div>
+			
+		</div>
+		
+		<!-- Enlace para cerrar sesión, situado debajo de los anteriores. -->
+		<div class="cerrar-sesion">
+		    <a th:href="@{/logout}">Cerrar sesión</a>
+		</div>
 
     </div>
 	
@@ -35,5 +41,6 @@
 			}
 		});
 	</script>
+	
 </body>
 </html>
