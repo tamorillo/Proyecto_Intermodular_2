@@ -405,5 +405,24 @@ textarea {
     box-sizing: border-box;
 }
 
+/* Estilo general del estado de la tarea. */
+.estado-tarea {
+    font-weight: bold;
+    padding: 4px 8px;
+    border-radius: 5px;
+}
+
+/* Color verde para las tareas terminadas. */
+.estado-tarea.terminada {
+    color: #15803d;
+    background-color: #dcfce7;
+}
+
+/* Color naranja para las tareas pendientes. */
+.estado-tarea.pendiente {
+    color: #c2410c;
+    background-color: #ffedd5;
+}
+
 
 
