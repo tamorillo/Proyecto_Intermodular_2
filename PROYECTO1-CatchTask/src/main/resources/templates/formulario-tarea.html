@@ -19,7 +19,9 @@
         <div class="tarjeta">
 
             <!-- Título del formulario. -->
-            <h1>Añadir tarea</h1>
+			<h1 th:text="${accion == 'editar'} ? 'Modificar tarea' : 'Añadir tarea'">
+			    Añadir tarea
+			</h1>
 
             <!-- Muestra un mensaje si se produce algún error. -->
             <p class="mensaje error"
