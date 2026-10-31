@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,78 +10,88 @@
     <!-- Conecta esta página con la hoja de estilos de la aplicación. -->
     <link rel="stylesheet" th:href="@{/css/estilo.css}">
 </head>
+
 <body>
 
     <main class="contenedor">
 
-        <!-- Título del formulario. -->
-        <h1>Añadir tarea</h1>
+        <!-- Tarjeta blanca que contiene el formulario. -->
+        <div class="tarjeta">
 
-        <!-- Muestra un mensaje si se produce algún error. -->
-        <p class="mensaje error"
-           th:if="${error != null}"
-           th:text="${error}">
-        </p>
+            <!-- Título del formulario. -->
+            <h1>Añadir tarea</h1>
 
-        <!-- Envía los datos al controlador para guardar la tarea. -->
-		<form th:action="${accion == 'editar'}
-		        ? @{/tareas/actualizar/{id}(id=${tarea.id})}
-		        : @{/tareas/guardar}"
-		      th:object="${tarea}"
-		      method="post">
+            <!-- Muestra un mensaje si se produce algún error. -->
+            <p class="mensaje error"
+               th:if="${error != null}"
+               th:text="${error}">
+            </p>
 
-            <!-- Campo para introducir el nombre de la tarea. -->
-            <label for="nombre">Nombre de la tarea:</label>
-            <input type="text"
-                   id="nombre"
-                   th:field="*{nombre}"
-                   required
-                   maxlength="100">
+            <!-- Envía los datos al controlador para guardar la tarea. -->
+            <form th:action="${accion == 'editar'}
+                    ? @{/tareas/actualizar/{id}(id=${tarea.id})}
+                    : @{/tareas/guardar}"
+                  th:object="${tarea}"
+                  method="post">
 
-            <!-- Campo para explicar qué hay que hacer. -->
-            <label for="descripcion">Descripción:</label>
-            <textarea id="descripcion"
-                      th:field="*{descripcion}"
-                      rows="4"></textarea>
+                <!-- Campo para introducir el nombre de la tarea. -->
+                <label for="nombre">Nombre de la tarea:</label>
+                <input type="text"
+                       id="nombre"
+                       th:field="*{nombre}"
+                       required
+                       maxlength="100">
 
-					  <!-- Campo para seleccionar la fecha de entrega. -->
-					  <label for="fechaEntrega" class="etiqueta-fecha">Fecha de entrega:</label>
-					  <input type="date"
-					         id="fechaEntrega"
-					         name="fechaEntrega"
-					         th:value="${tarea.fechaEntrega != null ? #temporals.format(tarea.fechaEntrega, 'yyyy-MM-dd') : ''}"
-					         required>
+                <!-- Campo para explicar qué hay que hacer. -->
+                <label for="descripcion">Descripción:</label>
+                <textarea id="descripcion"
+                          th:field="*{descripcion}"
+                          rows="4"></textarea>
 
-            <!-- Permite elegir una asignatura del usuario conectado. -->
-            <label for="asignatura">Asignatura:</label>
-            <select id="asignatura"
-                    th:field="*{asignatura.id}"
-                    required>
+                <!-- Campo para seleccionar la fecha de entrega. -->
+                <label for="fechaEntrega" class="etiqueta-fecha">Fecha de entrega:</label>
+                <input type="date"
+                       id="fechaEntrega"
+                       name="fechaEntrega"
+                       th:value="${tarea.fechaEntrega != null ? #temporals.format(tarea.fechaEntrega, 'yyyy-MM-dd') : ''}"
+                       required>
 
-                <option value="">Selecciona una asignatura</option>
+                <!-- Permite elegir una asignatura del usuario conectado. -->
+                <label for="asignatura">Asignatura:</label>
+                <select id="asignatura"
+                        th:field="*{asignatura.id}"
+                        required>
 
-                <!-- Crea una opción por cada asignatura recibida del controlador. -->
-                <option th:each="asignatura : ${asignaturas}"
-                        th:value="${asignatura.id}"
-                        th:text="${asignatura.nombre}">
-                </option>
+                    <option value="">Selecciona una asignatura</option>
 
-            </select>
+                    <!-- Crea una opción por cada asignatura recibida del controlador. -->
+                    <option th:each="asignatura : ${asignaturas}"
+                            th:value="${asignatura.id}"
+                            th:text="${asignatura.nombre}">
+                    </option>
 
-			<!-- Agrupa los botones del formulario para controlar su separación mediante CSS. -->
-			<div class="acciones-formulario">
+                </select>
 
-			    <!-- Botón para guardar la tarea. -->
-			    <button type="submit">Guardar tarea</button>
+                <!-- Agrupa los botones del formulario para controlar su separación mediante CSS. -->
+                <div class="acciones-formulario">
 
-			    <!-- Enlace para cancelar y volver al listado de tareas. -->
-			    <a th:href="@{/tareas}">Cancelar</a>
+                    <!-- Botón para guardar la tarea. -->
+                    <button type="submit">Guardar tarea</button>
 
-			</div>
+                    <!-- Enlace para cancelar y volver al listado de tareas. -->
+                    <a th:href="@{/tareas}">Cancelar</a>
 
-        </form>
+                </div>
+                <!-- Cierra el contenedor de los botones. -->
+
+            </form>
+            <!-- Cierra el formulario. -->
+
+        </div>
+        <!-- Cierra la tarjeta blanca. -->
 
     </main>
+    <!-- Cierra el contenedor principal. -->
 
 </body>
 </html>
