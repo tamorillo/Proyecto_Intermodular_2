@@ -1,5 +1,3 @@
-# CatchTask
-
 <p align="center">
   <img src="./logo_readme.png" alt="Logo de CatchTask" width="180">
 </p>
