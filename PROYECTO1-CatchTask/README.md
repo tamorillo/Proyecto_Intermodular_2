@@ -1,3 +1,5 @@
+# CatchTask
+
 <p align="center">
   <img src="./logo_readme.png" alt="Logo de CatchTask" width="180">
 </p>
@@ -23,7 +25,7 @@ Su objetivo es facilitar la planificación académica mediante una interfaz senc
 
 El proyecto se desarrolla de forma progresiva mediante sprints, incorporando nuevas funcionalidades y realizando pruebas durante cada etapa.
 
-Actualmente, se han completado los dos primeros sprints, centrados en la gestión de usuarios y asignaturas.
+Actualmente, se han completado los tres primeros sprints, centrados en la gestión de usuarios, asignaturas y tareas.
 
 ## 🚀 Funcionalidades implementadas
 
@@ -44,8 +46,21 @@ Actualmente, se han completado los dos primeros sprints, centrados en la gestió
 - 🗑️ **Eliminar asignaturas:** permite eliminar las asignaturas que el usuario ya no necesita.
 - 🔐 **Control de acceso por usuario:** incorpora comprobaciones para impedir que un usuario modifique o elimine asignaturas pertenecientes a otra cuenta.
 - 🎨 **Mejoras de interfaz:** se han ajustado las tarjetas, los títulos y los botones para facilitar el uso de la aplicación.
-- 💬 **Mensajes de confirmación:** los mensajes de éxito desaparecen automáticamente después de tres segundos.
+- 💬 **Mensajes informativos:** los mensajes desaparecen automáticamente después de tres segundos.
 - 🔄 **Mejora del cierre de sesión:** se ha añadido una comprobación para recargar páginas recuperadas de la caché del navegador.
+
+### 📝 Sprint 3 — Gestión de tareas
+
+- ➕ **Añadir tareas:** permite crear tareas indicando su nombre, descripción, fecha de entrega y asignatura.
+- 🔎 **Consultar tareas:** muestra las tareas del usuario en el apartado «Mis tareas».
+- ✏️ **Modificar tareas:** permite actualizar los datos de una tarea existente sin crear un registro nuevo.
+- 🗑️ **Eliminar tareas:** permite eliminar las tareas que el usuario ya no necesita, mostrando una confirmación antes de realizar el borrado.
+- ✅ **Cambiar el estado de las tareas:** permite marcar las tareas como terminadas o pendientes.
+- 🔐 **Control de acceso por usuario:** comprueba que cada usuario solo pueda gestionar sus propias tareas y asignaturas.
+- 🎨 **Mejoras visuales:** se han organizado las tarjetas y los botones, y se han añadido colores para diferenciar las tareas terminadas (verde) y pendientes (naranja).
+- 📅 **Mejora de la fecha de entrega:** se ha corregido su visualización en el formulario de edición para que se conserve correctamente si no se modifica.
+- 💬 **Mensajes informativos:** se ha mejorado su comportamiento para que desaparezcan automáticamente después de tres segundos.
+- 🖥️ **Mejoras en los formularios:** se ha incorporado un título dinámico para diferenciar las opciones de añadir y modificar tareas.
 
 ## 🛠️ Tecnologías utilizadas
 
@@ -59,13 +74,13 @@ Actualmente, se han completado los dos primeros sprints, centrados en la gestió
 | **Thymeleaf** | Generación de las páginas web. |
 | **HTML y CSS** | Estructura y diseño de la interfaz. |
 | **JavaScript** | Mejoras en el comportamiento de la interfaz. |
-| **MySQL** | Almacenamiento de usuarios y asignaturas. |
+| **MySQL** | Almacenamiento de la información. |
 | **Maven** | Gestión de dependencias y construcción del proyecto. |
 | **BCrypt** | Hash de las contraseñas. |
 
 ## 📂 Estructura del proyecto
 
-La estructura principal del proyecto sigue una organización por paquetes y carpetas:
+El proyecto sigue una organización por paquetes y carpetas para separar los controladores, las entidades, los repositorios y los recursos de la interfaz.
 
 ```text
 gestortareas/
@@ -76,13 +91,16 @@ gestortareas/
 │       │   │   └── PasswordConfig.java
 │       │   ├── controller/
 │       │   │   ├── UsuarioController.java
-│       │   │   └── AsignaturaController.java
+│       │   │   ├── AsignaturaController.java
+│       │   │   └── TareaController.java
 │       │   ├── entity/
 │       │   │   ├── Usuario.java
-│       │   │   └── Asignatura.java
+│       │   │   ├── Asignatura.java
+│       │   │   └── Tarea.java
 │       │   └── repository/
 │       │       ├── UsuarioRepository.java
-│       │       └── AsignaturaRepository.java
+│       │       ├── AsignaturaRepository.java
+│       │       └── TareaRepository.java
 │       └── resources/
 │           ├── static/
 │           │   └── css/
@@ -92,14 +110,16 @@ gestortareas/
 │           │   ├── login.html
 │           │   ├── inicio.html
 │           │   ├── asignaturas.html
-│           │   └── formulario-asignatura.html
+│           │   ├── formulario-asignatura.html
+│           │   ├── tareas.html
+│           │   └── formulario-tarea.html
 │           └── application.properties
 ├── pom.xml
 ├── logo_readme.png
 └── README.md
 ```
 
-*Nota: esta estructura muestra los archivos principales mencionados en la documentación. Puede variar según la organización final del proyecto.*
+*Nota: se muestran los principales archivos del proyecto. La estructura puede ampliarse a medida que se incorporen nuevas funcionalidades.*
 
 ## ⚙️ Requisitos previos
 
@@ -124,9 +144,9 @@ Sustituye `URL_DEL_REPOSITORIO` por la dirección real de tu repositorio.
 
 ### 2. Preparar la base de datos
 
-1. Abre MySQL Workbench.
-2. Comprueba que existe la base de datos `gestortareas`.
-3. Si no existe, créala antes de ejecutar la aplicación.
+Abre MySQL Workbench y comprueba que existe la base de datos `gestortareas`.
+
+Si no existe, puedes crearla con:
 
 ```sql
 CREATE DATABASE gestortareas;
@@ -136,7 +156,7 @@ Comprueba también que la configuración de conexión de la aplicación coincide
 
 ### 3. Configurar la conexión
 
-Abre el archivo `src/main/resources/application.properties` y revisa la configuración de la conexión a MySQL.
+Abre el archivo `src/main/resources/application.properties` y revisa la configuración de conexión a MySQL.
 
 La contraseña debe configurarse mediante la variable de entorno `DB_PASSWORD` si así está definida en el archivo de configuración.
 
@@ -153,7 +173,7 @@ La contraseña debe configurarse mediante la variable de entorno `DB_PASSWORD` s
 
 Cuando la aplicación se haya iniciado correctamente, abre el navegador y accede a:
 
-**http://localhost:8080/registro**
+[http://localhost:8080/registro](http://localhost:8080/registro)
 
 Desde la página de registro podrás crear una cuenta y, posteriormente, iniciar sesión para acceder a las funcionalidades disponibles.
 
@@ -161,7 +181,7 @@ Desde la página de registro podrás crear una cuenta y, posteriormente, iniciar
 
 ## 🗄️ Base de datos
 
-CatchTask utiliza MySQL para almacenar la información de los usuarios y las asignaturas.
+CatchTask utiliza MySQL para almacenar la información de los usuarios, las asignaturas y las tareas.
 
 ### Tabla `usuario`
 
@@ -187,9 +207,23 @@ Almacena la información de las asignaturas creadas por los usuarios.
 | `profesor` | Profesor de la asignatura. |
 | `usuario_id` | Referencia al usuario que ha creado la asignatura. |
 
-La relación entre usuarios y asignaturas permite asociar cada asignatura a su creador y filtrar la información que se muestra a cada usuario.
+### Tabla `tarea`
 
-*Los nombres y tipos de las columnas deben coincidir con la configuración real de las entidades y de la base de datos.*
+Almacena las tareas académicas creadas por los usuarios.
+
+| Campo | Descripción |
+|---|---|
+| `id` | Identificador único de la tarea. |
+| `nombre` | Nombre de la tarea. |
+| `descripcion` | Descripción de la actividad. |
+| `fecha_entrega` | Fecha límite de entrega. |
+| `terminada` | Indica si la tarea está completada. |
+| `usuario_id` | Referencia al usuario propietario de la tarea. |
+| `asignatura_id` | Referencia a la asignatura relacionada con la tarea. |
+
+Las relaciones entre usuarios, asignaturas y tareas permiten mantener organizada la información y mostrar a cada usuario únicamente sus propios datos.
+
+*Nota: los nombres de las columnas se muestran de forma descriptiva. Deben coincidir con los nombres reales definidos en las entidades y en la base de datos.*
 
 ## 📋 Gestión del proyecto
 
@@ -203,10 +237,10 @@ El código fuente y la evolución del proyecto se gestionan mediante Git y GitHu
 
 En los siguientes sprints se continuará ampliando CatchTask con nuevas funcionalidades académicas, entre ellas:
 
-- 📋 **Gestión de tareas:** añadir, modificar y eliminar tareas.
-- ✅ **Seguimiento de tareas:** marcar tareas como terminadas.
-- 🗓️ **Gestión de exámenes:** incorporar funcionalidades para organizar los próximos exámenes.
+- 🗓️ **Gestión de exámenes:** permitir añadir, modificar y eliminar exámenes.
+- 📅 **Consulta de próximos exámenes:** mostrar las próximas evaluaciones para facilitar la planificación.
 - 🎨 **Mejoras de interfaz:** seguir perfeccionando la presentación y la facilidad de uso.
+- 🔧 **Nuevas mejoras:** incorporar ajustes y funcionalidades adicionales según las necesidades del proyecto.
 
 Estas funcionalidades se incorporarán progresivamente a medida que avance el desarrollo.
 
