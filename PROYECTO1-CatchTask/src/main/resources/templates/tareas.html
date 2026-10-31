@@ -65,12 +65,20 @@
                             <span th:text="${tarea.asignatura.nombre}"></span>
                         </p>
 
-                        <!-- Estado -->
-                        <p class="datos-tarea">
-                            <strong>Estado:</strong>
-                            <span th:if="${tarea.terminada}">Terminada</span>
-                            <span th:unless="${tarea.terminada}">Pendiente</span>
-                        </p>
+						<!-- Estado -->
+						<p class="datos-tarea">
+
+						    <strong>Estado:</strong>
+
+						    <span th:if="${tarea.terminada}" class="estado-tarea terminada">
+						        Terminada
+						    </span>
+
+						    <span th:unless="${tarea.terminada}" class="estado-tarea pendiente">
+						        Pendiente
+						    </span>
+
+						</p>
 
                     </div>
 
