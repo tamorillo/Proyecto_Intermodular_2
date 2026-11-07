@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Mis exámenes - CatchTask</title>
+
+    <!-- Carga los estilos de la aplicación. -->
+    <link rel="stylesheet" th:href="@{/css/estilo.css}">
+</head>
+
+<body>
+
+    <!-- Contenedor principal para centrar el contenido. -->
+    <div class="contenedor">
+
+        <!-- Tarjeta principal que contiene el listado de exámenes. -->
+        <div class="tarjeta-listado-tareas">
+
+			<div class="cabecera-asignaturas">
+            		<h1>Mis exámenes</h1>
+				
+				<a class="cerrar-sesion" th:href="@{/logout}">Cerrar sesión</a>	
+			</div>
+			<p class="frase-motivadora">Organiza tus exámenes, prepara tu camino hacia el éxito</p>
+
+            <!-- Muestra el mensaje de confirmación si existe. -->
+            <div class="mensaje" th:if="${mensaje}" th:text="${mensaje}"></div>
+
+            <!-- Muestra los errores si existe alguno. -->
+            <p class="mensaje"
+               th:if="${error != null}"
+               th:text="${error}">
+            </p>
+
+            <div class="enlaces-tareas">
+                <a class="boton-anadir-tarea" th:href="@{/examenes/nuevo}">+ Añadir examen</a>
+                <a class="boton-volver-inicio" th:href="@{/inicio}">Volver al inicio</a>
+            </div>
+
+            <!-- Mensaje que aparece si todavía no hay exámenes. -->
+            <p th:if="${#lists.isEmpty(examenes)}">
+                Todavía no tienes exámenes registrados.
+            </p>
+
+            <!-- Rejilla que organiza los exámenes en varias columnas. -->
+            <div class="rejilla-tareas">
+
+                <div class="tarjeta-tarea" th:each="examen : ${examenes}">
+
+					<div class="contenido-tarea">
+
+					    <!-- Nombre del examen. -->
+					    <h3 th:text="${examen.nombre}"></h3>
+
+					    <!-- Descripción del examen. -->
+					    <p class="descripcion-tarea">
+					        <span th:if="${examen.descripcion != null and !#strings.isEmpty(#strings.trim(examen.descripcion))}"
+					              th:text="${examen.descripcion}">
+					        </span>
+					        <span th:unless="${examen.descripcion != null and !#strings.isEmpty(#strings.trim(examen.descripcion))}">
+					            Sin descripción
+					        </span>
+					    </p>
+
+					    <!-- Fecha del examen. -->
+					    <p class="datos-tarea">
+					        <strong>Fecha del examen:</strong>
+					        <span th:text="${examen.fecha}"></span>
+					    </p>
+
+					    <!-- Asignatura del examen. -->
+					    <p class="datos-tarea">
+					        <strong>Asignatura:</strong>
+					        <span th:text="${examen.asignatura.nombre}"></span>
+					    </p>
+
+					</div>
+
+                    <!-- Botones para realizar acciones sobre el examen. -->
+                    <div class="acciones-tarea">
+
+                        <!-- Enlace para editar el examen. -->
+                        <a class="boton-accion enlace-editar"
+                           th:href="@{/examenes/editar/{id}(id=${examen.id})}">
+                            Editar
+                        </a>
+
+                        <!-- Formulario para eliminar el examen, solicitando confirmación. -->
+                        <form th:action="@{/examenes/eliminar/{id}(id=${examen.id})}"
+                              method="post"
+                              onsubmit="return confirm('¿Seguro que quieres eliminar este examen?');">
+
+                            <button class="boton-accion boton-eliminar" type="submit">
+                                Eliminar
+                            </button>
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+
+        // Espera 3 segundos antes de ejecutar el código.
+        setTimeout(() => {
+
+            // Busca y elimina todos los elementos con la clase "mensaje".
+            document.querySelectorAll(".mensaje").forEach(m => m.remove());
+
+        }, 3000);
+
+    </script>
+
+</body>
+</html>
