@@ -19,7 +19,13 @@
         <!-- Tarjeta principal que contiene el listado de tareas. -->
         <div class="tarjeta-listado-tareas">
 
-            <h1>Mis tareas</h1>
+			<div class="cabecera-asignaturas">
+            		<h1>Mis tareas</h1>
+					
+					<a class="cerrar-sesion" th:href="@{/logout}">Cerrar sesión</a>
+			</div>	
+			
+			<p class="frase-motivadora">Organiza tu día, alcanza tus metas</p>
 
             <!-- Muestra el mensaje de confirmación si existe. -->
             <div class="mensaje" th:if="${mensaje}" th:text="${mensaje}"></div>
