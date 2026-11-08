@@ -12,17 +12,22 @@
 	
 	<div class="contenedor-asignaturas">
 
-    		<h1>Mis asignaturas</h1>
-	
-		<!-- Añadido enlace de cerrar sesión a la pantalla de mis asignaturas -->
-		<a class="cerrar-sesion" th:href="@{/logout}">Cerrar sesión</a>
+		<div class="cabecera-asignaturas">
+		    <h1>Mis asignaturas</h1>
 
-    		<p class="descripcion-pagina">Organiza y consulta tus asignaturas.</p>
+		    <a class="cerrar-sesion" th:href="@{/logout}">Cerrar sesión</a>
+		</div>
+
+    		<p class="frase-motivadora">Organiza y consulta tus asignaturas.</p>
 
     		<p class="mensaje" th:if="${mensaje}" th:text="${mensaje}"></p>
     		<p class="error" th:if="${error}" th:text="${error}"></p>
 
-    		<a class="boton-anadir" th:href="@{/asignaturas/nueva}">+ Añadir asignatura</a>
+			<div class="enlaces-tareas">
+			    <a class="boton-anadir" th:href="@{/asignaturas/nueva}">+ Añadir asignatura</a>
+
+			    <a class="boton-volver-inicio" th:href="@{/inicio}">Volver al inicio</a>
+			</div>
 
     		<p th:if="${#lists.isEmpty(asignaturas)}">
         		Aún no tienes asignaturas registradas.
@@ -68,7 +73,6 @@
 
  </div> <!-- Cierra la lista de asignaturas -->
 
- <a class="volver-inicio" th:href="@{/inicio}">Volver al inicio</a>
 	
 </div> <!-- Cierra el contenedor principal -->
 
