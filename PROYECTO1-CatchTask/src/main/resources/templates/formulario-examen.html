@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Formulario de examen - CatchTask</title>
+
+    <!-- Carga los estilos de la aplicación. -->
+    <link rel="stylesheet" th:href="@{/css/estilo.css}">
+</head>
+
+<body>
+
+    <main class="contenedor">
+        <div class="tarjeta">
+
+            <!-- Cambia el título según si estamos creando o editando. -->
+            <h1 th:text="${examen.id == null} ? 'Añadir examen' : 'Modificar examen'"></h1>
+
+            <!-- Muestra los mensajes de error. -->
+            <p class="mensaje" th:if="${error}" th:text="${error}"></p>
+
+            <!-- Formulario para crear o actualizar un examen. -->
+            <form th:action="${examen.id == null} ? @{/examenes/guardar} : @{/examenes/actualizar/{id}(id=${examen.id})}"
+                  th:object="${examen}"
+                  method="post">
+
+                <!-- Nombre del examen. -->
+                <label for="nombre">Nombre del examen:</label>
+                <input type="text"
+                       id="nombre"
+                       th:field="*{nombre}"
+                       maxlength="100"
+                       required>
+
+                <!-- Asignatura a la que pertenece. -->
+                <label for="asignatura">Asignatura:</label>
+                <select id="asignatura" th:field="*{asignatura.id}" required>
+                    <option value="">Selecciona una asignatura</option>
+
+                    <option th:each="asignatura : ${asignaturas}"
+                            th:value="${asignatura.id}"
+                            th:text="${asignatura.nombre}">
+                    </option>
+                </select>
+
+				<!-- Fecha del examen. -->
+				<label for="fecha">Fecha del examen:</label>
+
+				<input type="date"
+				       id="fecha"
+				       name="fecha"
+				       th:value="${examen.fecha != null ? #temporals.format(examen.fecha, 'yyyy-MM-dd') : ''}"
+				       required>
+
+                <!-- Descripción opcional. -->
+                <label for="descripcion">Descripción (opcional):</label>
+                <textarea id="descripcion"
+                          th:field="*{descripcion}"
+                          rows="4"
+                          placeholder="Añade información sobre el examen...">
+                </textarea>
+
+                <!-- Botones del formulario. -->
+                <div class="acciones-formulario">
+                    <button type="submit" class="boton-accion">
+                        Guardar
+                    </button>
+
+                    <a th:href="@{/examenes}" class="boton-volver-inicio">
+                        Cancelar
+                    </a>
+                </div>
+
+            </form>
+
+        </div>
+    </main>
+
+    <script>
+        // Espera 3 segundos antes de ejecutar el código.
+        setTimeout(() => {
+            // Busca y elimina los mensajes de error.
+            document.querySelectorAll(".mensaje").forEach(m => m.remove());
+        }, 3000);
+    </script>
+
+</body>
+</html>
