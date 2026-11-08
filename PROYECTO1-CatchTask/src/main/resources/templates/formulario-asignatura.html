@@ -9,88 +9,99 @@
 </head>
 
 <body>
-	
-	<div class="contenedor">
-		<div class="tarjeta">
 
-    		<h1 th:if="${accion == 'nueva'}">Nueva asignatura</h1>
-    		<h1 th:if="${accion == 'editar'}">Editar asignatura</h1>
+    <div class="contenedor">
+        <div class="tarjeta">
 
-    		<p>Introduce los datos de la asignatura.</p>
+            <h1 th:if="${accion == 'nueva'}">Nueva asignatura</h1>
+            <h1 th:if="${accion == 'editar'}">Editar asignatura</h1>
 
-    <!-- Formulario para añadir una asignatura -->
-    <form th:if="${accion == 'nueva'}"
-          th:action="@{/asignaturas/guardar}"
-          th:object="${asignatura}"
-          method="post">
+            <p>Introduce los datos de la asignatura.</p>
 
-        <label for="nombre">Nombre:</label>
-        <input type="text" id="nombre"
-               th:field="*{nombre}" required>
+            <!-- Formulario para añadir una asignatura. -->
+            <form th:if="${accion == 'nueva'}"
+                  th:action="@{/asignaturas/guardar}"
+                  th:object="${asignatura}"
+                  method="post">
 
-        <label for="descripcion">Descripción:</label>
-        <textarea id="descripcion"
-                  th:field="*{descripcion}"></textarea>
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre"
+                       th:field="*{nombre}" required>
 
-        <label for="curso">Curso:</label>
-        <input type="text" id="curso"
-               th:field="*{curso}" required>
+                <label for="descripcion">Descripción:</label>
+                <textarea id="descripcion"
+                          th:field="*{descripcion}"></textarea>
 
-        <label for="profesor">Profesor:</label>
-        <input type="text" id="profesor"
-               th:field="*{profesor}" required>
+                <label for="curso">Curso:</label>
+                <input type="text" id="curso"
+                       th:field="*{curso}" required>
 
-        <button type="submit">Guardar asignatura</button>
+                <label for="profesor">Profesor:</label>
+                <input type="text" id="profesor"
+                       th:field="*{profesor}" required>
 
-    </form>
+                <!-- Botones para guardar o cancelar. -->
+                <div class="acciones-formulario">
 
-    <!-- Formulario para editar una asignatura -->
-    <form th:if="${accion == 'editar'}"
-          th:action="@{/asignaturas/actualizar/{id}(id=${asignatura.id})}"
-          th:object="${asignatura}"
-          method="post">
+                    <button type="submit">Guardar</button>
 
-        <label for="nombre-editar">Nombre:</label>
-        <input type="text" id="nombre-editar"
-               th:field="*{nombre}" required>
+                    <a th:href="@{/asignaturas}">Cancelar</a>
 
-        <label for="descripcion-editar">Descripción:</label>
-        <textarea id="descripcion-editar"
-                  th:field="*{descripcion}"></textarea>
+                </div>
 
-        <label for="curso-editar">Curso:</label>
-        <input type="text" id="curso-editar"
-               th:field="*{curso}" required>
+            </form>
 
-        <label for="profesor-editar">Profesor:</label>
-        <input type="text" id="profesor-editar"
-               th:field="*{profesor}" required>
+            <!-- Formulario para editar una asignatura. -->
+            <form th:if="${accion == 'editar'}"
+                  th:action="@{/asignaturas/actualizar/{id}(id=${asignatura.id})}"
+                  th:object="${asignatura}"
+                  method="post">
 
-        <button type="submit">Guardar cambios</button>
+                <label for="nombre-editar">Nombre:</label>
+                <input type="text" id="nombre-editar"
+                       th:field="*{nombre}" required>
 
-    </form>
+                <label for="descripcion-editar">Descripción:</label>
+                <textarea id="descripcion-editar"
+                          th:field="*{descripcion}"></textarea>
 
-    <p>
-        <a th:href="@{/asignaturas}">Volver a mis asignaturas</a>
-    </p>
+                <label for="curso-editar">Curso:</label>
+                <input type="text" id="curso-editar"
+                       th:field="*{curso}" required>
 
-	<!-- Comprueba si el navegador recupera una página guardada y la recarga para verificar la sesión del usuario -->
-	<script>
-		window.addEventListener("pageshow", function(event) {
-			if (event.persisted) {
-				window.location.reload();
-			}
-		});
-	</script>
-	
-	<!-- Hace desaparecer los mensajes después de 3 segundos -->
-	<script>
-		// Espera 3 segundos antes de ejecutar el código
-	    setTimeout(() => {
-			// Busca y elimina todos los elementos con la clase "mensaje"
-	        document.querySelectorAll(".mensaje").forEach(m => m.remove());
-	    }, 3000);// 3 segundos
-	</script>
+                <label for="profesor-editar">Profesor:</label>
+                <input type="text" id="profesor-editar"
+                       th:field="*{profesor}" required>
+
+                <!-- Botones para guardar los cambios o cancelar. -->
+                <div class="acciones-formulario">
+
+                    <button type="submit">Guardar</button>
+
+                    <a th:href="@{/asignaturas}">Cancelar</a>
+
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+
+    <!-- Comprueba si el navegador recupera una página guardada. -->
+    <script>
+        window.addEventListener("pageshow", function(event) {
+            if (event.persisted) {
+                window.location.reload();
+            }
+        });
+    </script>
+
+    <!-- Hace desaparecer los mensajes después de 3 segundos. -->
+    <script>
+        setTimeout(() => {
+            document.querySelectorAll(".mensaje").forEach(m => m.remove());
+        }, 3000);
+    </script>
 
 </body>
 </html>
