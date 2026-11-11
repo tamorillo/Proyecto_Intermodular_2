@@ -60,6 +60,17 @@ Actualmente, se han completado los tres primeros sprints, centrados en la gesti�
 - 💬 **Mensajes informativos:** se ha mejorado su comportamiento para que desaparezcan automáticamente después de tres segundos.
 - 🖥️ **Mejoras en los formularios:** se ha incorporado un título dinámico para diferenciar las opciones de añadir y modificar tareas.
 
+### 📅 Sprint 4 — Gestión de exámenes
+
+- ➕ **Añadir exámenes:** permite crear exámenes indicando su nombre, asignatura, fecha y descripción opcional.
+- 🔎 **Consultar exámenes:** muestra los exámenes asociados al usuario que ha iniciado sesión.
+- ✏️ **Modificar exámenes:** permite actualizar los datos de los exámenes existentes.
+- 🗑️ **Eliminar exámenes:** permite eliminar los exámenes que el usuario ya no necesita.
+- 🔐 **Control de acceso por usuario:** comprueba que cada usuario solo pueda gestionar sus propios exámenes y utilizar sus propias asignaturas.
+- ✅ **Validación de datos:** comprueba que se introduzcan los campos obligatorios y que la asignatura seleccionada sea válida.
+- 🎨 **Mejoras visuales:** se ha unificado el diseño de las pantallas de tareas, asignaturas y exámenes mediante tarjetas y una distribución más ordenada.
+- 💬 **Mejoras de interfaz:** se han añadido frases motivadoras y enlaces para facilitar el uso de las diferentes pantallas.
+
 ## 🛠️ Tecnologías utilizadas
 
 | Tecnología | Uso |
@@ -79,7 +90,6 @@ Actualmente, se han completado los tres primeros sprints, centrados en la gesti�
 ## 📂 Estructura del proyecto
 
 El proyecto sigue una organización por paquetes y carpetas para separar los controladores, las entidades, los repositorios y los recursos de la interfaz.
-
 ```text
 gestortareas/
 ├── src/
@@ -90,15 +100,18 @@ gestortareas/
 │       │   ├── controller/
 │       │   │   ├── UsuarioController.java
 │       │   │   ├── AsignaturaController.java
-│       │   │   └── TareaController.java
+│       │   │   ├── TareaController.java
+│       │   │   └── ExamenController.java
 │       │   ├── entity/
 │       │   │   ├── Usuario.java
 │       │   │   ├── Asignatura.java
-│       │   │   └── Tarea.java
+│       │   │   ├── Tarea.java
+│       │   │   └── Examen.java
 │       │   └── repository/
 │       │       ├── UsuarioRepository.java
 │       │       ├── AsignaturaRepository.java
-│       │       └── TareaRepository.java
+│       │       ├── TareaRepository.java
+│       │       └── ExamenRepository.java
 │       └── resources/
 │           ├── static/
 │           │   └── css/
@@ -110,12 +123,15 @@ gestortareas/
 │           │   ├── asignaturas.html
 │           │   ├── formulario-asignatura.html
 │           │   ├── tareas.html
-│           │   └── formulario-tarea.html
+│           │   ├── formulario-tarea.html
+│           │   ├── examenes.html
+│           │   └── formulario-examen.html
 │           └── application.properties
 ├── pom.xml
 ├── logo_readme.png
 └── README.md
 ```
+
 
 *Nota: se muestran los principales archivos del proyecto. La estructura puede ampliarse a medida que se incorporen nuevas funcionalidades.*
 
@@ -179,7 +195,7 @@ Desde la página de registro podrás crear una cuenta y, posteriormente, iniciar
 
 ## 🗄️ Base de datos
 
-CatchTask utiliza MySQL para almacenar la información de los usuarios, las asignaturas y las tareas.
+CatchTask utiliza MySQL para almacenar la información de los usuarios, las asignaturas, las tareas y los exámenes.
 
 ### Tabla `usuario`
 
@@ -219,7 +235,21 @@ Almacena las tareas académicas creadas por los usuarios.
 | `usuario_id` | Referencia al usuario propietario de la tarea. |
 | `asignatura_id` | Referencia a la asignatura relacionada con la tarea. |
 
-Las relaciones entre usuarios, asignaturas y tareas permiten mantener organizada la información y mostrar a cada usuario únicamente sus propios datos.
+### Tabla `examen`
+
+Almacena los exámenes académicos creados por los usuarios.
+
+| Campo | Descripción |
+|---|---|
+| `id` | Identificador único del examen. |
+| `nombre` | Nombre del examen. |
+| `fecha` | Fecha en la que se realizará el examen. |
+| `descripcion` | Información adicional sobre el examen. |
+| `usuario_id` | Referencia al usuario propietario del examen. |
+| `asignatura_id` | Referencia a la asignatura relacionada con el examen. |
+
+Las relaciones entre usuarios, asignaturas, tareas y exámenes permiten mantener organizada la información académica y mostrar a cada usuario únicamente sus propios datos.
+
 
 *Nota: los nombres de las columnas se muestran de forma descriptiva. Deben coincidir con los nombres reales definidos en las entidades y en la base de datos.*
 
@@ -231,16 +261,15 @@ El desarrollo de CatchTask se organiza mediante sprints y un tablero de Trello, 
 
 El código fuente y la evolución del proyecto se gestionan mediante Git y GitHub.
 
-## 📅 Próximas mejoras
+## 📅 Posibles mejoras futuras
 
-En los siguientes sprints se continuará ampliando CatchTask con nuevas funcionalidades académicas, entre ellas:
+Aunque CatchTask cuenta con las funcionalidades principales previstas, existen algunas opciones que podrían incorporarse en futuras versiones para mejorar la organización académica:
 
-- 🗓️ **Gestión de exámenes:** permitir añadir, modificar y eliminar exámenes.
-- 📅 **Consulta de próximos exámenes:** mostrar las próximas evaluaciones para facilitar la planificación.
-- 🎨 **Mejoras de interfaz:** seguir perfeccionando la presentación y la facilidad de uso.
-- 🔧 **Nuevas mejoras:** incorporar ajustes y funcionalidades adicionales según las necesidades del proyecto.
+- 📋 **Consultar tareas pendientes:** mostrar únicamente las tareas que todavía no se han completado.
+- 🔎 **Buscar tareas por fecha o asignatura:** facilitar la consulta de tareas según su fecha de entrega o la asignatura correspondiente.
+- 📅 **Consultar próximos exámenes y tareas:** mostrar conjuntamente las próximas evaluaciones y tareas pendientes para facilitar la planificación.
 
-Estas funcionalidades se incorporarán progresivamente a medida que avance el desarrollo.
+Estas funcionalidades quedaron planteadas durante el análisis inicial del proyecto y se proponen como posibles mejoras para futuras versiones.
 
 ## 👨‍💻 Proyecto académico
 
